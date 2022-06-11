@@ -1,0 +1,40 @@
+﻿@model WebApi.Dto.HomeTaskAssessmentModel
+
+<form asp-action="SaveEvaluation">
+    <div>
+        
+        @Html.HiddenFor(m => Model.HomeTaskId)
+        
+            @Model.Title
+        @Model.Description
+      
+          @Model.Date
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Student name</th>
+                    <th>Pass</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 0; i < Model.HomeTaskStudents.Count; i++)
+                {
+                <tr>
+                    <td>@Model.HomeTaskStudents[i].StudentFullName</td>
+                    <td>
+                        @Html.CheckBoxFor(m => Model.HomeTaskStudents[i].IsComplete)
+                    </td>
+                    @Html.HiddenFor(m => Model.HomeTaskStudents[i].StudentId)
+                    @Html.HiddenFor(m => Model.HomeTaskStudents[i].StudentFullName)
+                    @Html.HiddenFor(m => Model.HomeTaskStudents[i].HomeTaskAssessmentId)
+                </tr>
+                }
+            </tbody>
+        </table>
+        <div>
+            <input type="submit" value="Save"  />
+        </div>
+
+    </div>
+</form>

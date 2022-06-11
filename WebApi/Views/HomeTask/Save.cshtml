@@ -1,0 +1,18 @@
+﻿@model WebApi.Dto.HomeTaskDto
+<form asp-action="@ViewData["action"]">
+    @Html.Hidden("courseId", (int)ViewBag.CourseId) 
+    <input type="hidden" asp-for="Id" />
+    <input type="text" name="Title" value="@Model.Title" />
+    <span asp-validation-for="Title" class="text-danger"></span>
+
+    <input type="text" name="Description" value="@Model.Description" />
+    <span asp-validation-for="Description" class="text-danger"></span>
+
+    <input type="number" name="Number" value="@Model.Number" />
+    <span asp-validation-for="Number" class="text-danger"></span>
+
+    <input type="date" name="Date" value="@Model.Date" />
+    <span asp-validation-for="Date" class="text-danger"></span>
+    <input type="submit" value="Save" />
+
+</form>

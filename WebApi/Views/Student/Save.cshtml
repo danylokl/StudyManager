@@ -1,0 +1,16 @@
+﻿@model WebApi.Dto.StudentDto
+<form asp-action="@ViewData["action"]">
+    <input type="text" name="Name" value="@Model.Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <input type="date" name="BirthDate" value="@Model.BirthDate" />
+    <span asp-validation-for="BirthDate" class="text-danger"></span>
+
+    <input type="email" name="Email" value="@Model.Email" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+
+    <input type="number" name="PhoneNumber" value="@Model.PhoneNumber" />
+    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    <input type="submit" value="Save" />
+
+</form>

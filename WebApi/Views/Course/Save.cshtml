@@ -1,0 +1,53 @@
+﻿@model WebApi.Dto.CourseDto
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<form asp-action="@ViewData["action"]">
+    <input type="hidden" asp-for="Id" />
+    <input asp-for="Name" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+
+    <input asp-for="StartDate" />
+    <span asp-validation-for="StartDate" class="text-danger"></span>
+
+
+    <input asp-for="EndDate" />
+    <span asp-validation-for="EndDate" class="text-danger"></span>
+
+    <input asp-for="PassCredits" />
+    <span asp-validation-for="PassCredits" class="text-danger"></span>
+    <input type="submit" value="Save" />
+
+</form>
+<p> Home tasks</p>
+@if (ViewBag.Action == "Edit")
+{
+    <p>
+        <a asp-action="Create" asp-controller="HomeTask" asp-route-courseId=@Model.Id>Add New Home Task</a>
+    </p>
+}
+
+<table>
+    <tbody>
+        @if (Model.HomeTasks != null)
+        {
+            foreach (var homeTask in Model.HomeTasks)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => homeTask.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => homeTask.Date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => homeTask.Description)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Evaluate", "Evaluate", "HomeTask", new { id = homeTask.Id }) |
+                        @Html.ActionLink("Edit", "Edit", "HomeTask", new { id = homeTask.Id }) |
+                        @Html.ActionLink("Delete", "Delete", "HomeTask", new { homeTaskId = homeTask.Id, courseId = Model.Id })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

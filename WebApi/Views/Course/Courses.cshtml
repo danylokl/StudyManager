@@ -1,0 +1,60 @@
+﻿@model IEnumerable<WebApi.Dto.CourseDto>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<a asp-action="Create"> Create course </a>
+<table>
+    <thead>
+        <tr>
+            <td>
+               @Html.DisplayNameFor(model=>model.Id)
+            </td>
+            <td>
+               @Html.DisplayNameFor(model=>model.Name)
+            </td>
+            <td>
+               @Html.DisplayNameFor(model=>model.StartDate)
+            </td>
+            <td>
+               @Html.DisplayNameFor(model=>model.EndDate)
+            </td>
+            <td>
+               @Html.DisplayNameFor(model=>model.PassCredits)
+            </td>
+            <td>
+               @Html.DisplayNameFor(model=>model.HomeTasks.Count)
+            </td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td>
+                    @course.Id
+                </td>
+                <td>
+                    @course.Name
+                </td>
+                <td>
+                    @course.StartDate.ToShortDateString()
+                </td>
+                <td>
+                    @course.EndDate.ToShortDateString()
+                </td>
+                <td>
+                    @course.PassCredits
+                </td>
+                <td>
+                    @course.HomeTasks.Count
+                </td>
+                <td>
+                    @Html.ActionLink("Assign Students", "AssignStudent", new { id = course.Id }) |
+                    @Html.ActionLink("Edit", "Edit", new { id = course.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = course.Id })
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+</table>

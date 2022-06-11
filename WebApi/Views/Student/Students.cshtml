@@ -1,0 +1,52 @@
+﻿@model IEnumerable<WebApi.Dto.StudentDto>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<a asp-action="Create"> Add student </a>
+<table>
+    <thead>
+    <tr>
+        <td>
+            Id
+        </td>
+        <td>
+            Name
+        </td>
+        <td>
+            BirthDate
+        </td>
+        <td>
+            Email
+        </td>
+        <td>
+            PhoneNumber
+        </td>
+    </tr>
+</thead>
+<tbody>
+    @foreach (var student in Model)
+    {
+        <tr>
+            <td>
+            @student.Id
+            </td>
+            <td>
+              @student.Name
+            </td>
+            <td>
+               @student.BirthDate.ToShortDateString()
+            </td>
+            <td>
+              @student.Email
+            </td>
+            <td>
+               @student.PhoneNumber
+            </td>
+           
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = student.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = student.Id })
+            </td>
+        </tr>
+
+    }
+</tbody>
+</table>
